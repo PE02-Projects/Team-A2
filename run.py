@@ -1,1 +1,5 @@
-# team A2
+import sys
+sys.path.append('./src')
+
+from filter import *
+
