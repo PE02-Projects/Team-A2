@@ -59,7 +59,7 @@ def graph_(x, savefile=False):
 
         # Reference
         elif i.tag == 'Modulator':
-            if i.attrib.get('Name') == 'DCM_LMZC_ALIGN':
+            if i.attrib.get('Name') == 'DCM_LMZC_ALIGN' or i.attrib.get('Name') == 'DCM_LMZO_ALIGN':
                 wl_ref = list(map(float, i.find('PortCombo').find('WavelengthSweep').find('L').text.split(',')))
                 tm_ref = list(map(float, i.find('PortCombo').find('WavelengthSweep').find('IL').text.split(',')))
                 plt.plot(wl_ref, tm_ref, color='#7f7f7f', linestyle=':', label='Reference')
