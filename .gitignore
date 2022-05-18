@@ -116,8 +116,7 @@ fabric.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij
 
-/dat
-
+/dat/D*
 /src/.pytest_cache
 /doc/.ipynb_checkpoints
 /doc/PE02_Project_Team_A2.ipynb
