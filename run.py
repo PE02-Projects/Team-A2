@@ -30,5 +30,3 @@ elif lot == "D23":
     P2 = P2.replace("COLUMN", column)
     tree = ET.parse(P1)
     root = tree.getroot()
-
-
