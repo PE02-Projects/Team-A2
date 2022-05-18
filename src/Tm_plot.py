@@ -59,7 +59,7 @@ def graph_(x, savefile=False):
 
         # Reference
         elif i.tag == 'Modulator':
-            if i.attrib.get('Name') == 'DCM_LMZC_ALIGN':
+            if i.attrib.get('Name') == 'DCM_LMZC_ALIGN' or i.attrib.get('Name') == 'DCM_LMZO_ALIGN':
                 wl_ref = list(map(float, i.find('PortCombo').find('WavelengthSweep').find('L').text.split(',')))
                 tm_ref = list(map(float, i.find('PortCombo').find('WavelengthSweep').find('IL').text.split(',')))
                 plt.plot(wl_ref, tm_ref, color='#7f7f7f', linestyle=':', label='Reference')
@@ -112,7 +112,7 @@ def graph_(x, savefile=False):
 
 if __name__ == '__main__':
 
-    LMZ_file = glob.glob('C:/Users/김찬영/PycharmProjects/Team-A2/Team-A2/dat/**/*LMZ?.xml', recursive=True)
+    LMZ_file = glob.glob('C:/Users/김찬영/PycharmProjects/pythonProject/Team-A2/dat/**/*LMZ?.xml', recursive=True)
     for i, file in enumerate(LMZ_file):
         print(i, '.', file)
     index = int(input('Please select the number of the file. ex. 0 '))
