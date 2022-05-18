@@ -37,13 +37,13 @@ class MyWindow(QMainWindow):
 
     #Functions
 
-    def fb07(self):
-        if QCheckBox:checkState(self.b07) = True:
-            self.label.setText("You selected Diode D07")
-            self.update()
-        elif QCheckBox:checkState(self.b07) = False:
-            self.label.setText("You unselected Diode D07")
-            self.update()
+    # def fb07(self):
+    #     if QCheckBox:checkState(self.b07) = True:
+    #         self.label.setText("You selected Diode D07")
+    #         self.update()
+    #     elif QCheckBox:checkState(self.b07) = False:
+    #         self.label.setText("You unselected Diode D07")
+    #         self.update()
 
     def update(self):
         self.label.adjustSize()
