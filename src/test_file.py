@@ -34,13 +34,14 @@ class MyWindow(QMainWindow):
         self.b24.setText("D24")
         self.b24.clicked.connect(self.clicked)
         self.b24.move(10,85)
+
     #Functions
 
     def fb07(self):
-        if QCheckBox::checkState(self.b07) = True
+        if QCheckBox:checkState(self.b07) = True:
             self.label.setText("You selected Diode D07")
             self.update()
-        elif QCheckBox::checkState(self.b07) = False
+        elif QCheckBox:checkState(self.b07) = False:
             self.label.setText("You unselected Diode D07")
             self.update()
 
