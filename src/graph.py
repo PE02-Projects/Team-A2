@@ -112,7 +112,7 @@ def graph_(x, savefile=False):
 
 if __name__ == '__main__':
 
-    LMZ_file = glob.glob('C:/Users/김찬영/PycharmProjects/Team-A2/Team-A2/dat/**/*LMZ?.xml', recursive=True)
+    LMZ_file = glob.glob('C:/Users/김찬영/PycharmProjects/pythonProject/Team-A2/dat/**/*LMZ?.xml', recursive=True)
     for i, file in enumerate(LMZ_file):
         print(i, '.', file)
     index = int(input('Please select the number of the file. ex. 0 '))
