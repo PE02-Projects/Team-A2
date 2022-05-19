@@ -36,6 +36,7 @@ class MyWindow(QMainWindow):
         self.b24.move(10,85)
     #Functions
 
+
     def fb07(self):
         if QCheckBox::checkState(self.b07) = True
             self.label.setText("You selected Diode D07")
