@@ -7,10 +7,6 @@ import re
 import glob
 
 
-def current(V_D, I_s, n):  # define equation of current
-    return I_s * (np.exp((V_D / (n * 0.026)) - 1))
-
-
 def graph_(x, savefile=False):
     # if we want to save the file change savefile to True
     # x is the file directory which glob by the filtering module
@@ -74,14 +70,8 @@ def graph_(x, savefile=False):
     # Wavelength-Transmission(Fitting)
     rsq_ref = []
     for p in range(2, 7):
-        start_time = time.time()
         fit = np.polyfit(np.array(wl_ref), np.array(tm_ref), p)
-        run_time = time.time() - start_time
         fit_eq = np.poly1d(fit)
-        print(f'[Fitting equation(ref)-{p}th]')
-        print(fit_eq)
-        print(f'r²={r2_score(tm_ref, fit_eq(wl_list[0]))}')
-        print(f'run time : {run_time}s\n')
         rsq_ref.append(r2_score(tm_ref, fit_eq(wl_list[0])))
         plt.plot(wl_ref, fit_eq(wl_ref), label=f'{p}th R² : {r2_score(tm_ref, fit_eq(wl_list[0]))}')
 
@@ -105,6 +95,3 @@ def graph_(x, savefile=False):
 
     plt.tight_layout()  # tight_layout to see the graph more tightly
     plt.show()
-    # savefile if savefile is True1
-    if savefile == True:
-        plt.savefig(f'{file_name}.png', dpi=400)
