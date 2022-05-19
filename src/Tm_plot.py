@@ -108,16 +108,3 @@ def graph_(x, savefile=False):
     # savefile if savefile is True1
     if savefile == True:
         plt.savefig(f'{file_name}.png', dpi=400)
-
-
-if __name__ == '__main__':
-
-    LMZ_file = glob.glob('C:/Users/김찬영/PycharmProjects/pythonProject/Team-A2/dat/**/*LMZ?.xml', recursive=True)
-    for i, file in enumerate(LMZ_file):
-        print(i, '.', file)
-    index = int(input('Please select the number of the file. ex. 0 '))
-    save = input('Will you save it? (y/n) ')
-    if save == 'y':
-        graph_(LMZ_file[index], savefile=True)
-    else:
-        graph_(LMZ_file[index], savefile=False)
