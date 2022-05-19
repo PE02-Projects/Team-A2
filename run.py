@@ -38,4 +38,4 @@ for selected_coord in coord:
 print(final_files)
 
 for final_file in final_files:
-    print(load_data(final_file))
+    tm_plot(final_file)

@@ -2,19 +2,11 @@ import xml.etree.ElementTree as etree
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.metrics import r2_score
-import time
-import re
-import glob
 
 
-def graph_(x, savefile=False):
-    # if we want to save the file change savefile to True
-    # x is the file directory which glob by the filtering module
+def tm_plot(x):
     xml_file = etree.parse(x)           # load xml file
     root = xml_file.getroot()           # get root(element) of file
-    r = re.compile('[HY].+[^(.xml)]')   # by using reglex compile the name from HY to .xml
-    file_name = r.findall(x)[0]         # get the file name by using compile
-    print(file_name)
 
     # setting of font
     font_title = {              # font setting for title
@@ -25,8 +17,8 @@ def graph_(x, savefile=False):
 
     # ==================================================================================================================== #
     plt.figure(figsize=(20, 10))
-    plt.suptitle(file_name, fontsize=20, weight='bold')
-
+    plt.suptitle(x[24:], fontsize=20, weight='bold')
+    plt.subplots_adjust(hspace=0.3)
     # ==================================================================================================================== #
 
     # Wavelength-Transmission(Raw data)
@@ -61,11 +53,6 @@ def graph_(x, savefile=False):
                 plt.plot(wl_ref, tm_ref, color='#7f7f7f', linestyle=':', label='Reference')
                 plt.subplot(2, 3, 2)
                 plt.plot(wl_ref, tm_ref, color='#7f7f7f', linestyle=':', label='Reference')
-                arr_tm = np.array(tm_ref)
-                print(
-                    f'Max transmission of Ref. spec : {np.max(arr_tm)}dB at wavelength : {wl_ref[np.argmax(arr_tm)]}nm')
-                print(
-                    f'Min transmission of Ref. spec : {np.min(arr_tm)}dB at wavelength : {wl_ref[np.argmin(arr_tm)]}nm\n')
 
     # Wavelength-Transmission(Fitting)
     rsq_ref = []
@@ -93,5 +80,4 @@ def graph_(x, savefile=False):
     plt.ylabel('Measured transmission[dB]', fontsize=10)
     plt.legend(loc='lower center', ncol=2, fontsize=10)
 
-    plt.tight_layout()  # tight_layout to see the graph more tightly
     plt.show()
