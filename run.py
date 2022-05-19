@@ -28,7 +28,7 @@ for selected_wafer in wafer_num:
 
 print(mid_files)
 
-coord = list(map(str, input('Insert desired coordinate in the form of "row,column" (Ex. -1,0 1,1 ...) : ').split()))
+coord = list(map(str, input('Insert desired coordinate in the form of "row,column" (Ex. -1,0/1,1/...) : ').split('/')))
 for selected_coord in coord:
     if selected_coord in coord_list:
         for mid_file in mid_files:
