@@ -7,6 +7,7 @@ from IV_plot import *
 from extract import *
 from Tm_data import *
 from Tm_plot import *
+from total_plot import *
 
 
 mid_files, final_files = [], []
@@ -38,4 +39,4 @@ for selected_coord in coord:
 print(final_files)
 
 for final_file in final_files:
-    tm_plot(final_file)
+    total_plot(final_file)
