@@ -1,5 +1,5 @@
 pandas
 numpy
 matplotlib
-glob2
+glob
 lmfit
