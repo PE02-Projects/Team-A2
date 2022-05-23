@@ -40,3 +40,4 @@ print(final_files)
 
 for final_file in final_files:
     total_plot(final_file)
+    save_plot(final_file)
