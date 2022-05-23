@@ -6,7 +6,7 @@ from fitting import *
 
 def iv_plot(file):
     # ======================================= Voltage-Current(Raw data) ========================================== #
-
+    plt.subplot(2, 3, 4)
     vol, cur = [], []               # reset the value of Voltage and Current
 
     xml_file = etree.parse(str(file))     # load xml file
