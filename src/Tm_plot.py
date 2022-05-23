@@ -2,23 +2,11 @@ import xml.etree.ElementTree as etree
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.metrics import r2_score
-import time
-import re
-import glob
 
 
-def current(V_D, I_s, n):  # define equation of current
-    return I_s * (np.exp((V_D / (n * 0.026)) - 1))
-
-
-def graph_(x, savefile=False):
-    # if we want to save the file change savefile to True
-    # x is the file directory which glob by the filtering module
+def tm_plot(x):
     xml_file = etree.parse(x)           # load xml file
     root = xml_file.getroot()           # get root(element) of file
-    r = re.compile('[HY].+[^(.xml)]')   # by using reglex compile the name from HY to .xml
-    file_name = r.findall(x)[0]         # get the file name by using compile
-    print(file_name)
 
     # setting of font
     font_title = {              # font setting for title
@@ -26,12 +14,6 @@ def graph_(x, savefile=False):
         'weight': 'bold',       # font weight
         'size': 15              # font size
     }
-
-    # ==================================================================================================================== #
-    plt.figure(figsize=(20, 10))
-    plt.suptitle(file_name, fontsize=20, weight='bold')
-
-    # ==================================================================================================================== #
 
     # Wavelength-Transmission(Raw data)
     wl_list, tm_list = [], []
@@ -65,23 +47,12 @@ def graph_(x, savefile=False):
                 plt.plot(wl_ref, tm_ref, color='#7f7f7f', linestyle=':', label='Reference')
                 plt.subplot(2, 3, 2)
                 plt.plot(wl_ref, tm_ref, color='#7f7f7f', linestyle=':', label='Reference')
-                arr_tm = np.array(tm_ref)
-                print(
-                    f'Max transmission of Ref. spec : {np.max(arr_tm)}dB at wavelength : {wl_ref[np.argmax(arr_tm)]}nm')
-                print(
-                    f'Min transmission of Ref. spec : {np.min(arr_tm)}dB at wavelength : {wl_ref[np.argmin(arr_tm)]}nm\n')
 
     # Wavelength-Transmission(Fitting)
     rsq_ref = []
     for p in range(2, 7):
-        start_time = time.time()
-        fit = np.polyfit(np.array(wl_ref), np.array(tm_ref), p)
-        run_time = time.time() - start_time
+        fit = np.polyfit(np.array(wl_ref), np.array(tm_ref), 6)
         fit_eq = np.poly1d(fit)
-        print(f'[Fitting equation(ref)-{p}th]')
-        print(fit_eq)
-        print(f'r²={r2_score(tm_ref, fit_eq(wl_list[0]))}')
-        print(f'run time : {run_time}s\n')
         rsq_ref.append(r2_score(tm_ref, fit_eq(wl_list[0])))
         plt.plot(wl_ref, fit_eq(wl_ref), label=f'{p}th R² : {r2_score(tm_ref, fit_eq(wl_list[0]))}')
 
@@ -102,10 +73,3 @@ def graph_(x, savefile=False):
     plt.xlabel('Wavelength[nm]', fontsize=10)
     plt.ylabel('Measured transmission[dB]', fontsize=10)
     plt.legend(loc='lower center', ncol=2, fontsize=10)
-
-    plt.tight_layout()  # tight_layout to see the graph more tightly
-    plt.show()
-    # savefile if savefile is True1
-    if savefile == True:
-        plt.savefig(f'{file_name}.png', dpi=400)
-
