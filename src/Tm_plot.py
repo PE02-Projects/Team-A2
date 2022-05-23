@@ -15,12 +15,6 @@ def tm_plot(x):
         'size': 15              # font size
     }
 
-    # ==================================================================================================================== #
-    plt.figure(figsize=(20, 10))
-    plt.suptitle(x[24:], fontsize=20, weight='bold')
-    plt.subplots_adjust(hspace=0.3)
-    # ==================================================================================================================== #
-
     # Wavelength-Transmission(Raw data)
     wl_list, tm_list = [], []
     wl_ref, tm_ref = [], []
@@ -57,7 +51,7 @@ def tm_plot(x):
     # Wavelength-Transmission(Fitting)
     rsq_ref = []
     for p in range(2, 7):
-        fit = np.polyfit(np.array(wl_ref), np.array(tm_ref), p)
+        fit = np.polyfit(np.array(wl_ref), np.array(tm_ref), 6)
         fit_eq = np.poly1d(fit)
         rsq_ref.append(r2_score(tm_ref, fit_eq(wl_list[0])))
         plt.plot(wl_ref, fit_eq(wl_ref), label=f'{p}th R² : {r2_score(tm_ref, fit_eq(wl_list[0]))}')
@@ -79,5 +73,3 @@ def tm_plot(x):
     plt.xlabel('Wavelength[nm]', fontsize=10)
     plt.ylabel('Measured transmission[dB]', fontsize=10)
     plt.legend(loc='lower center', ncol=2, fontsize=10)
-
-    plt.show()
