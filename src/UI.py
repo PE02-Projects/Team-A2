@@ -174,9 +174,7 @@ class MyWindow(QMainWindow):
         self.exit.clicked.connect(QCoreApplication.instance().quit)
         self.exit.move(450,265)
 
-        self.check = QtWidgets.QPushButton(self)
-        self.check.setText('Check')
-        self.check.move(340,265)
+
     #Functions
     def Diodecheck(self):
         if self.b07.isChecked() is True:
