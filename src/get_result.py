@@ -1,7 +1,9 @@
 from filter import *
-from extract import *
-import save_xlsx
-
+from save_xlsx import *
+from total_plot import *
+import time
+import warnings
+warnings.filterwarnings('ignore')
 
 mid_files, final_files = [], []
 coord_list = []
@@ -19,21 +21,29 @@ for selected_wafer in wafer_num:
                 mid_files.append(file)
     else:
         print(f'Error : {selected_wafer} not in data..')
-
 print(mid_files)
-
 coord = list(map(str, input('Insert desired coordinate in the form of "row,column" (Ex. -1,0/1,1/...) : ').split('/')))
 for selected_coord in coord:
-    if selected_coord in coord_list:
-        for mid_file in mid_files:
+    for mid_file in mid_files:
+        if selected_coord in coord_list:
             if selected_coord in mid_file:
                 final_files.append(mid_file)
-    else:
-        print(f'Error : ({selected_coord}) not in data..')
+
+        elif selected_coord == 'all':
+            for all_coord in coord_list:
+                if all_coord in mid_file:
+                    final_files.append(mid_file)
+        else:
+            print(f'Error : ({selected_coord}) not in data..')
+
 print(final_files)
+start_time = time.time()
+
+make_xlsx(final_files)
 
 for final_file in final_files:
     print(load_data(final_file))
+    save_plot(final_file)
 
-save_xlsx.make_xlsx(final_files)
-
+run_time = time.time() - start_time
+print(run_time)
