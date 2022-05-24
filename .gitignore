@@ -120,6 +120,6 @@ fabric.properties
 /src/.pytest_cache
 /doc/.ipynb_checkpoints
 /doc/PE02_Project_Team_A2.ipynb
-/res/png_files
-/res/xlsx_files
+/res/png_files/HY*.png
+/res/xlsx_files/Analysis_Result_A2.xlsx
 /src/__pycache__

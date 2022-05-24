@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.metrics import r2_score
 
-
 def tm_plot(x):
     xml_file = etree.parse(x)           # load xml file
     root = xml_file.getroot()           # get root(element) of file
