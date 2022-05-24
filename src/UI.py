@@ -4,8 +4,8 @@ from PyQt5.QtCore import *
 import sys
 
 Diodes = ['D07','D08','D23','D24']
-Rows = [-4,-3,-2,-1,0,1,2,3,4]
-Cols = [-4,-3,-2,-1,0,1,2,3,4]
+Rows = [-4,-3,-2,-1,0,1,2,3]
+Cols = [-4,-3,-2,-1,0,1,2,3]
 
 #Class function of the launcher
 class MyWindow(QMainWindow):
@@ -88,11 +88,6 @@ class MyWindow(QMainWindow):
         self.r3.clicked.connect(self.rowcheck)
         self.r3.move(200,65)
 
-        self.r4 = QtWidgets.QCheckBox(self)
-        self.r4.setText('4')
-        self.r4.clicked.connect(self.rowcheck)
-        self.r4.move(200,85)
-
 
         #Column selection
 
@@ -140,10 +135,6 @@ class MyWindow(QMainWindow):
         self.c3.clicked.connect(self.colcheck)
         self.c3.move(375,65)
 
-        self.c4 = QtWidgets.QCheckBox(self)
-        self.c4.setText('4')
-        self.c4.clicked.connect(self.colcheck)
-        self.c4.move(375, 85)
 
         #Restrictions
         self.Option = QtWidgets.QLabel(self)
@@ -268,11 +259,6 @@ class MyWindow(QMainWindow):
             Rows[7] = 3
         else:
             Rows[7] = ""
-        if self.r4.isChecked() is True:
-            Rows[8] = 4
-        else:
-            Rows[8] = ""
-        return Rows
 
 
     def colcheck(self):
@@ -316,4 +302,3 @@ if __name__ == '__main__':
     win = MyWindow()
     win.show()
     sys.exit(app.exec_())
-

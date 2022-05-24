@@ -19,4 +19,4 @@ def save_plot(x):
     tm_plot(x)
     iv_plot(x)
 
-    plt.savefig('./res/png_files/'+x[24:57]+'.png')
+    plt.savefig('./res/png_files/'+x[x.find('(')-13:x.find(')')+16]+'.png')
