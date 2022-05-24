@@ -1,11 +1,12 @@
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QApplication, QMainWindow
-from PyQt5.QtCore import QCoreApplication
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
 import sys
 
 Diodes = ['D07','D08','D23','D24']
-Rows = [-4,-3,-2,-1,0,1,2,3,4]
+Rows = [-4,-3,-2,-1,0,1,2,3]
 Cols = [-4,-3,-2,-1,0,1,2,3]
+
 #Class function of the launcher
 class MyWindow(QMainWindow):
     def __init__(self):
@@ -18,7 +19,7 @@ class MyWindow(QMainWindow):
     def initUI(self):
         #Wafer section
         self.label = QtWidgets.QLabel(self)
-        self.label.setText("Wafer")
+        self.label.setText("[ Wafer ]")
         self.label.move(10 , 5)
 
         self.b07 = QtWidgets.QCheckBox(self)
@@ -44,7 +45,7 @@ class MyWindow(QMainWindow):
         #Row selection
 
         self.label = QtWidgets.QLabel(self)
-        self.label.setText("Rows")
+        self.label.setText("[ Rows ]")
         self.label.move(125 , 5)
 
         self.r04 = QtWidgets.QCheckBox(self)
@@ -87,16 +88,11 @@ class MyWindow(QMainWindow):
         self.r3.clicked.connect(self.rowcheck)
         self.r3.move(200,65)
 
-        self.r4 = QtWidgets.QCheckBox(self)
-        self.r4.setText('4')
-        self.r4.clicked.connect(self.rowcheck)
-        self.r4.move(200,85)
-
 
         #Column selection
 
         self.label = QtWidgets.QLabel(self)
-        self.label.setText("Columns")
+        self.label.setText("[ Columns ]")
         self.label.move(300 , 5)
 
         self.c04 = QtWidgets.QCheckBox(self)
@@ -139,45 +135,75 @@ class MyWindow(QMainWindow):
         self.c3.clicked.connect(self.colcheck)
         self.c3.move(375,65)
 
+
         #Restrictions
-        self.plotIV = QtWidgets.QCheckBox(self)
-        self.plotIV.setText('IV graph')
-        self.plotIV.move(450,25)
+        self.Option = QtWidgets.QLabel(self)
+        self.Option.setText('[ Option ]')
+        self.Option.move(10, 130)
 
-        self.reference = QtWidgets.QCheckBox(self)
-        self.reference.setText('Ref fitting')
-        self.reference.move(450,45)
+        self.showplot = QtWidgets.QCheckBox(self)
+        self.showplot.setText('Show plot')
+        self.showplot.move(10,160)
 
-        self.Transs_measured = QtWidgets.QCheckBox(self)
-        self.Transs_measured.setText('Transmission\nmeasured')
-        self.Transs_measured.move(450,75)
+        self.saveplot = QtWidgets.QCheckBox(self)
+        self.saveplot.setText('Save plot')
+        self.saveplot.move(130,160)
 
-        self.Transs_processed = QtWidgets.QCheckBox(self)
-        self.Transs_processed.setText('Transmission\nprocessed')
-        self.Transs_processed.move(450,105)
+        self.savexlsx = QtWidgets.QCheckBox(self)
+        self.savexlsx.setText('Save Excel File')
+        self.savexlsx.resize(200, 30)
+        self.savexlsx.move(250,160)
 
         #Executions
-        self.plot = QtWidgets.QPushButton(self)
-        self.plot.setText('Plot')
-        self.plot.move(10,265)
-
-        self.xlsx = QtWidgets.QPushButton(self)
-        self.xlsx.setText('xlsx')
-        self.xlsx.move(120,265)
-
         self.check = QtWidgets.QPushButton(self)
         self.check.setText('Run')
-        self.check.move(230,265)
+        self.check.clicked.connect(self.start_progress)
+        self.check.move(10,265)
 
         self.exit = QtWidgets.QPushButton(self)
         self.exit.setText('Exit')
         self.exit.clicked.connect(QCoreApplication.instance().quit)
         self.exit.move(450,265)
 
-        self.check = QtWidgets.QPushButton(self)
-        self.check.setText('Check')
-        self.check.move(340,265)
+        # progress bar
+        self.pbarlabel = QtWidgets.QLabel(self)
+        self.pbarlabel.setText('[ Progress ]')
+        self.pbarlabel.move(230, 200)
+
+        self.pbar = QProgressBar(self)
+        self.pbar.value()
+        self.pbar.setGeometry(30, 230, 500, 20)
+        self.pbar.setAlignment(Qt.AlignCenter)
+
+        # Timer
+        self.timer = QTimer()
+
+
     #Functions
+    def timer_progress(self, e):
+        self.count = self.pbar.value()
+        self.count += 1
+        self.pbar.setValue(self.count)
+
+        if self.count >= self.pbar.maximum():
+            self.timer.stop()
+            self.check.setText('Finished')
+            self.check.setEnabled(True)
+
+
+    def start_progress(self):
+        if self.count == self.pbar.minimum():
+            self.timer.setInterval(1000)
+            self.timer.timeout.connect(self.timer_progress)
+            self.timer.start()
+            self.check.setText('Loading')
+            self.check.setEnabled(False)
+
+        elif self.count == self.pbar.maximum():
+            self.pbar.reset()
+            self.check.setText('Run')
+
+
     def Diodecheck(self):
         if self.b07.isChecked() is True:
             Diodes[0] = "D07"
@@ -233,11 +259,6 @@ class MyWindow(QMainWindow):
             Rows[7] = 3
         else:
             Rows[7] = ""
-        if self.r4.isChecked() is True:
-            Rows[8] = 4
-        else:
-            Rows[8] = ""
-        return Rows
 
 
     def colcheck(self):
@@ -276,11 +297,8 @@ class MyWindow(QMainWindow):
         return Cols
 
 
-def window():
+if __name__ == '__main__':
     app = QApplication(sys.argv)
     win = MyWindow()
     win.show()
     sys.exit(app.exec_())
-
-window()
-
