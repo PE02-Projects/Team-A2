@@ -2,6 +2,7 @@ from IV_data import *
 from Tm_data import *
 import pandas as pd
 from extract import *
+from Create_Folder import *
 
 def make_xlsx(file_list):
     b = []
@@ -17,5 +18,7 @@ def make_xlsx(file_list):
                                "Analysis Wavelength(nm)", "Rsq of Ref.spectrum(6th)", "Max transmission of Ref spec(dB)",
                                "Min transmission of Ref spec(dB)", "Rsq of IV", "I at -1V[A]", "I at 1V[A]"])
 
-    with pd.ExcelWriter("./res/xlsx_files/Analysis_Result_A2.xlsx") as writer:
+    createFolder('./res/xlsx_files/'+now.strftime('%Y-%m-%d-%H-%M-%S'))
+
+    with pd.ExcelWriter("./res/xlsx_files/"+now.strftime('%Y-%m-%d-%H-%M-%S')+"/Analysis_Result_A2.xlsx") as writer:
         df.to_excel(writer)

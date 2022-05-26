@@ -52,8 +52,8 @@ def tm_plot(x):
     for p in range(2, 7):
         fit = np.polyfit(np.array(wl_ref), np.array(tm_ref), 6)
         fit_eq = np.poly1d(fit)
-        rsq_ref.append(r2_score(tm_ref, fit_eq(wl_list[0])))
-        plt.plot(wl_ref, fit_eq(wl_ref), label=f'{p}th R² : {r2_score(tm_ref, fit_eq(wl_list[0]))}')
+        rsq_ref.append(r2_score(tm_ref, fit_eq(wl_ref)))
+        plt.plot(wl_ref, fit_eq(wl_ref), label=f'{p}th R² : {r2_score(tm_ref, fit_eq(wl_ref))}')
 
     plt.title('Transmission spectra - as measured', fontdict=font_title)
     plt.xlabel('Wavelength[nm]', fontsize=10)

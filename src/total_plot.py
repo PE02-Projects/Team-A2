@@ -1,7 +1,8 @@
 from IV_plot import *
 from Tm_plot import *
+from Create_Folder import *
 
-def total_plot(x):
+def show_plot(x):
     plt.figure(figsize=(20, 10))
     plt.suptitle(x[24:], fontsize=20, weight='bold')
     plt.subplots_adjust(hspace=0.3)
@@ -19,4 +20,5 @@ def save_plot(x):
     tm_plot(x)
     iv_plot(x)
 
-    plt.savefig('./res/png_files/'+x[x.find('(')-13:x.find(')')+16]+'.png')
+    createFolder('./res/xlsx_files/' + now.strftime('%Y-%m-%d-%H-%M'))
+    plt.savefig('./res/png_files/'+now.strftime('%Y-%m-%d-%H-%M')+'/'+x[x.find('(')-13:x.find(')')+16]+'.png')
