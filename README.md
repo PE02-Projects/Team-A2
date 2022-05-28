@@ -1,11 +1,11 @@
 # Team-A2_Project
 
 ## Index
-  1. [Overview](Overview)
-  2. [Installation](Installation)
-  3. [Environment](Environment) 
-  4. [Usage Instructions](Usage Instructions)
-  5. [Collaborators](Collaborators)
+  1. [Overview](#OverviewLink)
+  2. [Installation](#Installation)
+  3. [Environment](#Environment) 
+  4. [Usage Instructions](#Usage Instructions)
+  5. [Collaborators](#Collaborators)
 
 ***
 
