@@ -7,9 +7,11 @@
 4. [Usage instructions](#usage-instructions)  
 5. [Collaborators and contact info](#collaborators)  
 
+
 ***
 
 ## Overview
+
 This python project is a tool to analyze measured data of wafers.  
 It can plot and save graphs for any data you want, and also save xlsx files.  
   
@@ -47,11 +49,14 @@ pip install -r requierements.txt
 
 The files are saved in the `res` folder.
 
+
 ***
 
   ## **Collaborators** 
+
   * Seo Jinchan : sjhmp21@hanyang.ac.kr
 
   * Kim Chanyoung : belljy@hanyang.ac.kr
   
   * Jose Alan Barraza Villaverde : al167694@alumnos.uacj.mx
+
