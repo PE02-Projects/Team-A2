@@ -19,7 +19,7 @@ for row in range(-4, 4):
     for column in range(-4, 4):
         coord_list.append('('+str(row)+','+str(column)+')')
 
-device_type = str(input('Insert desired device type (Ex. LMZC or LMZO, if you want all device type, insert LMZ) : '))
+device_type = str(input('Insert desired device type (Ex. LMZC or LMZO. if you want all device type, insert LMZ) : '))
 if device_type == 'LMZ':
     first_files = LMZ_files
 
