@@ -22,6 +22,7 @@ def rsq_ref(x):
 
     return r2_ref
 
+
 def max_min_ref(x):
     # x is the file directory which glob by the filtering module
     xml_file = etree.parse(x)           # load xml file

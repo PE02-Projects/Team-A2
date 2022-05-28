@@ -3,6 +3,7 @@ from sklearn.metrics import r2_score
 from lmfit import Model
 from fitting import *
 
+
 def rsq_iv(file):
     vol, cur = [], []
 

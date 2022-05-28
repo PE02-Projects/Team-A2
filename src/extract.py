@@ -1,6 +1,7 @@
 import xml.etree.ElementTree as etree
 from dateutil.parser import parse
 
+
 def load_data(file):
     lot, wafer, mask, test, name, date, oper, row, col, analysis_wl = '', '', '', '', '', '', '', '', '', ''
 

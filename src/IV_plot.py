@@ -27,7 +27,7 @@ def iv_plot(file):
 
     r2 = r2_score(list(map(abs, cur)), result.best_fit)
 
-    plt.plot(vol, result.best_fit, '--', label=f'Fitting : r² = {r2}')
+    plt.plot(vol, result.best_fit, '--', label=f'Fitting : R² = {r2}')
 
     plt.text(-1, result.best_fit[4], str(result.best_fit[4])[:4]+str(result.best_fit[4])[-4:]+'A', weight='bold',
              color='r', horizontalalignment='center', verticalalignment='bottom')

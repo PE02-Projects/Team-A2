@@ -2,6 +2,7 @@ from IV_plot import *
 from Tm_plot import *
 from Create_Folder import *
 
+
 def show_plot(x):
     plt.figure(figsize=(20, 10))
     plt.suptitle(x[24:], fontsize=20, weight='bold')
@@ -11,6 +12,7 @@ def show_plot(x):
     iv_plot(x)
 
     plt.show()
+
 
 def save_plot(x):
     plt.figure(figsize=(20, 10))
