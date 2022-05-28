@@ -1,4 +1,4 @@
 import sys
-from get_result import *
-
 sys.path.append('./src')
+
+from get_result import *
