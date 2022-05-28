@@ -20,5 +20,6 @@ def save_plot(x):
     tm_plot(x)
     iv_plot(x)
 
-    createFolder('./res/xlsx_files/' + now.strftime('%Y-%m-%d-%H-%M'))
-    plt.savefig('./res/png_files/'+now.strftime('%Y-%m-%d-%H-%M')+'/'+x[x.find('(')-13:x.find(')')+16]+'.png')
+    path = './res/png_files/'+now.strftime('%Y%m%d_%H-%M-%S')
+    createFolder(path)
+    plt.savefig(path+'/'+x[x.find('(')-13:x.find(')')+16]+'.png')

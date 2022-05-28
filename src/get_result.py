@@ -18,16 +18,24 @@ for row in range(-4, 4):
     for column in range(-4, 4):
         coord_list.append('('+str(row)+','+str(column)+')')
 
-wafer_num = list(map(str, input('Insert desired wafer number in the form of "D00" (Ex. D07 D08...) : ').split()))
-for selected_wafer in wafer_num:
-    if selected_wafer in wafer_list:
+wafer_num = list(map(str, input('Insert desired wafer number in the form of "D00" (Ex. D07 D08... or all) : ').split()))
+if wafer_num[0] == 'all':
+    for selected_wafer in wafer_list:
         for file in LMZ_files:
             if selected_wafer in file:
                 mid_files.append(file)
-    else:
-        print(f'Error : {selected_wafer} not in data..')
 
-coord = list(map(str, input('Insert desired coordinate in the form of "row,column" (Ex. -1,0/1,1/...) : ').split('/')))
+else:
+    for selected_wafer in wafer_num:
+        if selected_wafer in wafer_list:
+            for file in LMZ_files:
+                if selected_wafer in file:
+                    mid_files.append(file)
+        else:
+            print(f'Error : {selected_wafer} not in data..')
+
+coord = list(map(str, input('Insert desired coordinate in the form of "row,column" (Ex. -1,0/1,1/... or all) : ')
+                 .split('/')))
 if coord[0] == 'all':
     for mid_file in mid_files:
         for all_coord in coord_list:
@@ -85,13 +93,15 @@ if float_count == 0 and png_count == 0 and xlsx_count == 0:
     print('Nothing Data..')
 
 elif float_count == 1 and png_count == 0 and xlsx_count == 0:
-    for final_file in final_files:
+    for final_file in tqdm(final_files, desc='floating png files '):
         show_plot(final_file)
+        time.sleep(0.1)
     print('Done')
 
 elif float_count == 0 and png_count == 1 and xlsx_count == 0:
-    for final_file in final_files:
+    for final_file in tqdm(final_files, desc='Saving png files '):
         save_plot(final_file)
+        time.sleep(0.1)
     print('Done')
 
 elif float_count == 0 and png_count == 0 and xlsx_count == 1:
@@ -99,28 +109,34 @@ elif float_count == 0 and png_count == 0 and xlsx_count == 1:
     print('Done')
 
 elif float_count == 1 and png_count == 1 and xlsx_count == 0:
-    for final_file in final_files:
+    for final_file in tqdm(final_files, desc='Floating png files '):
         show_plot(final_file)
-    for final_file in final_files:
+        time.sleep(0.1)
+    for final_file in tqdm(final_files, desc='Saving png files '):
         save_plot(final_file)
+        time.sleep(0.1)
     print('Done')
 
 elif float_count == 0 and png_count == 1 and xlsx_count == 1:
-    for final_file in final_files:
+    for final_file in tqdm(final_files, desc='Saving png files '):
         save_plot(final_file)
+        time.sleep(0.1)
     make_xlsx(final_files)
     print('Done')
 
 elif float_count == 1 and png_count == 0 and xlsx_count == 1:
-    for final_file in final_files:
+    for final_file in tqdm(final_files, desc='Floating png files '):
         show_plot(final_file)
+        time.sleep(0.1)
     make_xlsx(final_files)
     print('Done')
 
 elif float_count == 1 and png_count == 1 and xlsx_count == 1:
-    for final_file in final_files:
+    for final_file in tqdm(final_files, desc='Floating png files '):
         show_plot(final_file)
-    for final_file in final_files:
+        time.sleep(0.1)
+    for final_file in tqdm(final_files, desc='Saving png files '):
         save_plot(final_file)
+        time.sleep(0.1)
     make_xlsx(final_files)
     print('Done')
