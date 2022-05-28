@@ -50,7 +50,7 @@ def tm_plot(x):
     # Wavelength-Transmission(Fitting)
     rsq_ref = []
     for p in range(2, 7):
-        fit = np.polyfit(np.array(wl_ref), np.array(tm_ref), 6)
+        fit = np.polyfit(np.array(wl_ref), np.array(tm_ref), p)
         fit_eq = np.poly1d(fit)
         rsq_ref.append(r2_score(tm_ref, fit_eq(wl_ref)))
         plt.plot(wl_ref, fit_eq(wl_ref), label=f'{p}th R² : {r2_score(tm_ref, fit_eq(wl_ref))}')

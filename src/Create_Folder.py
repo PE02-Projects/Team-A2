@@ -3,6 +3,7 @@ from datetime import datetime
 
 now = datetime.now()
 
+
 def createFolder(directory):
     try:
         if not os.path.exists(directory):
