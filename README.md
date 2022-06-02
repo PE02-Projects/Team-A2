@@ -21,7 +21,7 @@ It can plot and save graphs for any data you want, and also save xlsx files.
 To install all the required modules just use the following command: 
 
 ```
-pip install -r requierements.txt
+pip install -r requirements.txt
 ```
 
 ***
