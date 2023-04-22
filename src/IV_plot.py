@@ -23,7 +23,7 @@ def iv_plot(file):
     # ====================================== Voltage-Current(Fitting) ========================================== #
 
     Cmodel = Model(IV_Fitting)
-    result = Cmodel.fit(list(map(abs, cur)), v=vol, i_s=1, q=1, nk=1, cst=1, v_list=vol, c_list=list(map(abs, cur)))
+    result = Cmodel.fit(list(map(abs, cur)), v=vol, i_s=1, q=1, nkT=1, cst=1, v_list=vol, c_list=list(map(abs, cur)))
 
     r2 = r2_score(list(map(abs, cur)), result.best_fit)
 
